@@ -33,15 +33,18 @@ func (ch ComputeHandler) Read() string {
 		defer file.Close()
 
 		data := make([]byte, 64)
+		str := make([]string, 0)
 
 		for {
 			n, err := file.Read(data)
 			if err == io.EOF { // если конец файла
 				break // выходим из цикла
 			}
-			fmt.Print(string(data[:n]))
+			str = append(str, string(data[:n]))
+			//fmt.Print(string(data[:n]))
 		}
-		return string(data)
+		result := strings.Join(str, " ")
+		return result
 	}
 	return ch.Input
 }
@@ -69,10 +72,10 @@ func (ch *ComputeHandler) Compute() error {
 	return nil
 }
 
-var st1 = ComputeHandler{"4 3 -", "default"}
+//var st1 = ComputeHandler{"4 3 -", "default"}
 
-var st2 = st1.Compute()
+//var st2 = st1.Compute()
 
-func main() {
-	fmt.Println(st2)
-}
+//func main() {
+//fmt.Println(st2)
+//}

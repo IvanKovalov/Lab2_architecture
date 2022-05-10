@@ -11,27 +11,42 @@ import (
 )
 
 var (
-	inputExpression = flag.Bool("e", true, "Expression to compute")
-	inputFile       = flag.Bool("f", true, "File with expression")
+	inputExpression = flag.Bool("e", false, "Expression to compute")
+	inputFile       = flag.Bool("f", false, "File with expression")
 	outputResult    = flag.Bool("o", true, "Write result to file")
 )
 
 func main() {
 	flag.Parse()
-	in := os.Args[1]
-	out := os.Args[2]
-	if *inputExpression || *inputFile && *outputResult {
+	in := os.Args[2]
+
+	if *inputExpression && *outputResult {
+
 		handler := &lab2.ComputeHandler{
 			Input:  in,
-			Output: out,
+			Output: os.Args[4],
 		}
-		fmt.Println(handler.Compute())
-	} else if *inputExpression || *inputFile && !*outputResult {
+		handler.Compute()
+		fmt.Println(inputExpression)
+	} else if *inputExpression && !*outputResult {
 		handler := &lab2.ComputeHandler{
-			Input:  os.Args[1],
+			Input:  os.Args[2],
 			Output: "default",
 		}
+		handler.Compute()
+	} else if *inputFile && !*outputResult {
+		handler := &lab2.ComputeHandler{
+			Input:  os.Args[2],
+			Output: os.Args[4],
+		}
 		fmt.Println(handler.Compute())
+	} else if *inputFile && *outputResult {
+		//out := os.Args[4]
+		handler := &lab2.ComputeHandler{
+			Input:  os.Args[2],
+			Output: "default",
+		}
+		handler.Compute()
 	} else if !*inputExpression {
 		//err := errors.New("Input expretion")
 	}
