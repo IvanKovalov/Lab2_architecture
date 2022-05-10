@@ -35,7 +35,3 @@ func PostfixToInfix(s string) (string, error) {
 	//fmt.Println(sentence)
 	return sentence, fmt.Errorf(strerr)
 }
-
-func main() {
-	//PostfixToInfix(a)
-}

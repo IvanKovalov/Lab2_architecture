@@ -1,19 +1,40 @@
 package main
 
 import (
+	//"errors"
 	"flag"
 	"fmt"
 
-	lab2 "github.com/roman-mazur/architecture-lab-2"
+	"os"
+
+	lab2 "github.com/devteam/lab-2"
 )
 
 var (
-	inputExpression = flag.String("e", "", "Expression to compute")
-	// TODO: Add other flags support for input and output configuration.
+	inputExpression = flag.Bool("e", true, "Expression to compute")
+	inputFile       = flag.Bool("f", true, "File with expression")
+	outputResult    = flag.Bool("o", true, "Write result to file")
 )
 
 func main() {
 	flag.Parse()
+	in := os.Args[1]
+	out := os.Args[2]
+	if *inputExpression || *inputFile && *outputResult {
+		handler := &lab2.ComputeHandler{
+			Input:  in,
+			Output: out,
+		}
+		fmt.Println(handler.Compute())
+	} else if *inputExpression || *inputFile && !*outputResult {
+		handler := &lab2.ComputeHandler{
+			Input:  os.Args[1],
+			Output: "default",
+		}
+		fmt.Println(handler.Compute())
+	} else if !*inputExpression {
+		//err := errors.New("Input expretion")
+	}
 
 	// TODO: Change this to accept input from the command line arguments as described in the task and
 	//       output the results using the ComputeHandler instance.
@@ -23,6 +44,4 @@ func main() {
 	//       }
 	//       err := handler.Compute()
 
-	res, _ := lab2.PostfixToInfix("+ 2 2")
-	fmt.Println(res)
 }
