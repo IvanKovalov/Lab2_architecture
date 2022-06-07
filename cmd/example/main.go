@@ -14,7 +14,7 @@ import (
 var (
 	inputExpression = flag.Bool("e", false, "Expression to compute")
 	inputFile       = flag.Bool("f", false, "File with expression")
-	outputResult    = flag.Bool("o", true, "Write result to file")
+	outputResult    = flag.Bool("o", false, "Write result to file")
 )
 
 type Reader interface {
@@ -66,48 +66,34 @@ func (wr WriteAll) Write(str string, outFile string) {
 
 var writer = WriteAll{}
 var reader = Readall{}
+var firstarg string
 
 func main() {
 	flag.Parse()
-	in := os.Args[2]
 
-	if *inputExpression && *outputResult {
-
-		handler := &lab2.ComputeHandler{
-			Wr:     writer,
-			Rd:     reader,
-			Input:  in,
-			Output: "default",
-		}
-		handler.Compute()
-		fmt.Println(inputExpression)
-	} else if *inputExpression && !*outputResult {
-		handler := &lab2.ComputeHandler{
-			Wr:     writer,
-			Rd:     reader,
-			Input:  os.Args[2],
-			Output: os.Args[4],
-		}
-		handler.Compute()
-	} else if *inputFile && !*outputResult {
-		handler := &lab2.ComputeHandler{
-			Wr:     writer,
-			Rd:     reader,
-			Input:  os.Args[2],
-			Output: "default",
-		}
-		fmt.Println(handler.Compute())
-	} else if *inputFile && *outputResult {
-		//out := os.Args[4]
-		handler := &lab2.ComputeHandler{
-			Wr:     writer,
-			Rd:     reader,
-			Input:  os.Args[2],
-			Output: os.Args[4],
-		}
-		handler.Compute()
+	if *inputExpression {
+		firstarg = os.Args[2]
+	} else if *inputFile {
+		firstarg = os.Args[2]
 	} else if !*inputExpression {
 		//err := errors.New("Input expretion")
+	}
+	if *outputResult {
+		handler := &lab2.ComputeHandler{
+			Wr:     writer,
+			Rd:     reader,
+			Input:  firstarg,
+			Output: "default",
+		}
+		handler.Compute()
+	} else if !*outputResult {
+		handler := &lab2.ComputeHandler{
+			Wr:     writer,
+			Rd:     reader,
+			Input:  firstarg,
+			Output: os.Args[4],
+		}
+		handler.Compute()
 	}
 
 }
