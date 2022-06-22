@@ -78,7 +78,7 @@ func main() {
 	} else if !*inputExpression {
 		//err := errors.New("Input expretion")
 	}
-	if *outputResult {
+	if !*outputResult {
 		handler := &lab2.ComputeHandler{
 			Wr:     writer,
 			Rd:     reader,
@@ -86,7 +86,7 @@ func main() {
 			Output: "default",
 		}
 		handler.Compute()
-	} else if !*outputResult {
+	} else if *outputResult {
 		handler := &lab2.ComputeHandler{
 			Wr:     writer,
 			Rd:     reader,

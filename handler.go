@@ -28,7 +28,7 @@ func (ch *ComputeHandler) Compute() error {
 	ex := ch.Rd.Read(ch.Input)
 	res, err := PostfixToInfix(ex)
 	if err != nil {
-		//fmt.Println("Недопустимый ввод")
+		//fmt.Println("Недопустимые символы")
 		//return err
 	}
 	if ch.Output == "default" {

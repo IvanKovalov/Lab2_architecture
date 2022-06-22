@@ -12,12 +12,12 @@ func ExampleTestHandler() {
 	handler := &ComputeHandler{
 		Wr:     writer,
 		Rd:     reader,
-		Input:  "4 2 - 3 * 5 + ",
+		Input:  "4 2 - 3 *",
 		Output: "default",
 	}
 	handler.Compute()
 	//Output:
-	// 4-2*3+5
+	// (4-2)*3
 }
 
 func ExampleTestHandler1() {
