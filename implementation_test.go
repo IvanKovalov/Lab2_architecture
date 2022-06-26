@@ -28,10 +28,3 @@ func (s *MySuite) ExamplePostfixToInfix(c *C) {
 	c.Check(res, Equals, "4+2")
 	fmt.Println(res)
 }
-
-func ExamplePrefixToPostfix() {
-	res, _ := PostfixToInfix("2 2 +")
-	fmt.Println(res)
-	//Output:
-	// 2+2
-}

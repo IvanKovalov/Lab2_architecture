@@ -5,10 +5,9 @@ import (
 	"io"
 	"os"
 	"strings"
-	//. "gopkg.in/check.v1"
 )
 
-func ExampleTestHandler() {
+func (s *MySuite) ExampleTestHandler() {
 	handler := &ComputeHandler{
 		Wr:     writer,
 		Rd:     reader,
@@ -20,7 +19,7 @@ func ExampleTestHandler() {
 	// (4-2)*3
 }
 
-func ExampleTestHandler1() {
+func (s *MySuite) ExampleTestHandler1() {
 	handler := &ComputeHandler{
 		Wr:     writer,
 		Rd:     reader,
