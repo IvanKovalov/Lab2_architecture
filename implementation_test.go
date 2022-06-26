@@ -15,7 +15,7 @@ var suit = Suite(&MySuite{})
 
 func (s *MySuite) TestPostfixToInfix(c *C) {
 	res, _ := PostfixToInfix("7 8 + 3 2 + /")
-	c.Check(res, Equals, "(7+8)/(3+2)")
+	c.Check(res, Equals, "(7+8)(3+2)")
 }
 
 func (s *MySuite) TestErrorPostfixToInfix(c *C) {
