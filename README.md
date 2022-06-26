@@ -1,4 +1,4 @@
-Шаблон для 2-гої роботи з архітектури ПЗ
----
-
-Використайте кнопку **"Use this template"**, щоб створити власний репозиторій.
+### Коміт на якому успішно запущений процес 
+https://github.com/IvanKovalov/Lab2_architecture/actions/runs/2563756951
+### Коміт на якому не успішно запущений процес 
+https://github.com/IvanKovalov/Lab2_architecture/actions/runs/2563746026
